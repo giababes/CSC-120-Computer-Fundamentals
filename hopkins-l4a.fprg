@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value="hopkins-l4a"/>
+        <attribute name="authors" value="georgieHopkins"/>
+        <attribute name="about" value="current semester: sp22&#13;&#10;section: 0006&#13;&#10;bb username: gmhopkins"/>
+        <attribute name="saved" value="2022-02-21 01:09:46 PM"/>
+        <attribute name="created" value="Q2hhcmw7REVTS1RPUC1KNVBPUElGOzIwMjItMDItMTc7MTA6MjE6NTEgUE07Mjg1Mg=="/>
+        <attribute name="edited" value="Q2hhcmw7REVTS1RPUC1KNVBPUElGOzIwMjItMDItMTc7MTE6MDM6MjMgUE07MTtDaGFybDtERVNLVE9QLUo1UE9QSUY7MjAyMi0wMi0xMTswMjowODowNSBQTTtob3BraW5zLWwyYS5mcHJnOzc0NzA="/>
+        <attribute name="edited" value="Q2hhcmw7REVTS1RPUC1KNVBPUElGOzIwMjItMDItMjE7MDE6MDk6NDYgUE07MTM7MzAxNg=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="&#9;T1:Adults 0, child 2  exit at adult entry&#13;&#10;T2: Adults 2, child 0. Wrong Date exit at date entry&#13;&#10;T3: adults 2 , child 0. Correct date Subtotal = 73.5. Tax = 5.145 , fee = 2 total cost = 80.645 (less than 5)&#13;&#10;T4: adults 3, child 3 Correct date Subtotal = 186.75. Tax = 13.0725 , fee = 3 total cost = 202.8225 (more than 5)&#9;&#13;&#10;"/>
+            <declare name="salesTax, ADULTcost, CHILDcost, MINfee, MAXfee" type="Real" array="False" size=""/>
+            <declare name="ATTEND" type="Integer" array="False" size=""/>
+            <assign variable="ATTEND" expression="5"/>
+            <assign variable="ADULTcost" expression="36.75"/>
+            <assign variable="CHILDcost" expression="25.50"/>
+            <assign variable="MAXfee" expression="1.00"/>
+            <assign variable="MINfee" expression="0.50"/>
+            <assign variable="salesTax" expression="0.07"/>
+            <call expression="greeting()"/>
+            <call expression="concertDetails()"/>
+            <call expression="finish()"/>
+        </body>
+    </function>
+    <function name="calcCost" type="None" variable="">
+        <parameters>
+            <parameter name="name" type="String" array="False"/>
+            <parameter name="date" type="String" array="False"/>
+            <parameter name="phone" type="String" array="False"/>
+            <parameter name="adultTickets" type="Integer" array="False"/>
+            <parameter name="childTickets" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="salesTax, ADULTcost, CHILDcost, MINfee, MAXfee" type="Real" array="False" size=""/>
+            <declare name="ATTEND" type="Integer" array="False" size=""/>
+            <assign variable="ATTEND" expression="5"/>
+            <assign variable="ADULTcost" expression="36.75"/>
+            <assign variable="CHILDcost" expression="25.50"/>
+            <assign variable="MAXfee" expression="1.00"/>
+            <assign variable="MINfee" expression="0.50"/>
+            <declare name="fee" type="Real" array="False" size=""/>
+            <declare name="totalTickets" type="Integer" array="False" size=""/>
+            <assign variable="totalTickets" expression="childTickets + adultTickets"/>
+            <if expression="totalTickets &lt;= ATTEND">
+                <then>
+                    <assign variable="fee" expression="totalTickets * MAXfee"/>
+                </then>
+                <else>
+                    <assign variable="fee" expression="totalTickets * MINfee"/>
+                </else>
+            </if>
+            <declare name="subtotal, totalCost" type="Real" array="False" size=""/>
+            <assign variable="salesTax" expression="0.07"/>
+            <assign variable="subtotal" expression="(adultTickets * ADULTcost) + (childTickets * CHILDcost)"/>
+            <assign variable="salesTax" expression="subTotal * salesTax"/>
+            <assign variable="totalCost" expression="subTotal + salesTax + fee"/>
+            <call expression="createReport(name, date, phone, adultTickets, childTickets, subtotal, salesTax, totalCost)"/>
+        </body>
+    </function>
+    <function name="concertDetails" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Deftones Concert, Raleigh, NC 05/20/2022&quot;" newline="True"/>
+            <declare name="adultTickets, childTickets" type="Integer" array="False" size=""/>
+            <declare name="date, name, phone" type="String" array="False" size=""/>
+            <output expression="&quot;How many Adults? You need atleast one.&quot;" newline="True"/>
+            <input variable="adultTickets"/>
+            <if expression="adultTickets &gt;= 1">
+                <then>
+                    <output expression="&quot;You must choose one of the allowed dates which are Mar, Apr, or May&quot;" newline="True"/>
+                    <output expression="&quot;Please enter the date you wish to attend&quot;" newline="True"/>
+                    <input variable="date"/>
+                    <if expression="date = &quot;Mar&quot; OR date = &quot;Apr&quot; OR date = &quot;May&quot;">
+                        <then>
+                            <output expression="&quot;Child Tickets Needed&quot;" newline="True"/>
+                            <input variable="childTickets"/>
+                            <output expression="&quot;Name&quot;" newline="True"/>
+                            <input variable="name"/>
+                            <output expression="&quot;Phone Number&quot;" newline="True"/>
+                            <input variable="phone"/>
+                        </then>
+                        <else>
+                            <call expression="errorMsg()"/>
+                        </else>
+                    </if>
+                    <call expression="calcCost(name, date, phone, adultTickets, childTickets)"/>
+                </then>
+                <else>
+                    <call expression="errorMsg()"/>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="createReport" type="None" variable="name">
+        <parameters>
+            <parameter name="name" type="String" array="False"/>
+            <parameter name="date" type="String" array="False"/>
+            <parameter name="phone" type="String" array="False"/>
+            <parameter name="adultTickets" type="Integer" array="False"/>
+            <parameter name="childTickets" type="Integer" array="False"/>
+            <parameter name="subtotal" type="Real" array="False"/>
+            <parameter name="salesTax" type="Real" array="False"/>
+            <parameter name="totalCost" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <output expression="&quot;Deftones Spring 2022 Concert&quot;" newline="True"/>
+            <output expression="&quot;Thank you &quot;&amp;name&amp;&quot; at &quot;&amp;phone&amp;&quot;. Details of your total cost $&quot;&amp;totalCost&amp;&quot; can be found below:&quot;" newline="True"/>
+            <output expression="&quot;Adult Tickets: &quot;&amp;adultTickets" newline="True"/>
+            <output expression="&quot;Child Tickets: &quot;&amp;childTickets" newline="True"/>
+            <output expression="&quot;The date you selected was &quot;&amp;date" newline="True"/>
+            <output expression="&quot;Subtotal is: $&quot;&amp;subtotal&amp;&quot;, Tax is:$ &quot;&amp;salesTax&amp;&quot; for a total cost of: $&quot;&amp;totalCost" newline="True"/>
+        </body>
+    </function>
+    <function name="errorMsg" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;I am sorry, you must have at least one adult as well as the correct date of Mar, Apr, or May. This program will now exit.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="finish" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Thank you for using this program.  This program was designed by Hopkins&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="greeting" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="greeting" type="String" array="False" size=""/>
+            <assign variable="greeting" expression="&quot;This program calculates total cost of concert tickets&quot;"/>
+            <output expression="&quot;Deftones Spring 2022 Concert&quot;" newline="True"/>
+            <output expression="greeting" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

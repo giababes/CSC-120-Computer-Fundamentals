@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value="hopkins-5a"/>
+        <attribute name="authors" value="georgie hopkins"/>
+        <attribute name="about" value="current semester: sp22&#13;&#10;section: 0006&#13;&#10;bb username: gmhopkins"/>
+        <attribute name="saved" value="2022-03-02 03:27:22 PM"/>
+        <attribute name="created" value="Q2hhcmw7REVTS1RPUC1KNVBPUElGOzIwMjItMDItMjg7MDk6MjU6NDMgUE07Mjg2Nw=="/>
+        <attribute name="edited" value="Q2hhcmw7REVTS1RPUC1KNVBPUElGOzIwMjItMDMtMDI7MDM6Mjc6MjIgUE07NDsyOTY0"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <call expression="welcome()"/>
+            <declare name="loanAMT, payment, origLoanAmt" type="Real" array="False" size=""/>
+            <output expression="&quot;Enter the loan amount&quot;" newline="True"/>
+            <input variable="loanAMT"/>
+            <assign variable="origLoanAMT" expression="loanAMT"/>
+            <output expression="&quot;Enter the payment amount&quot;" newline="True"/>
+            <input variable="payment"/>
+            <call expression="loanReport(loanAMT,payment,origLoanAMT)"/>
+            <call expression="finish()"/>
+        </body>
+    </function>
+    <function name="finish" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Thank you for using this program&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="loanReport" type="None" variable="">
+        <parameters>
+            <parameter name="loanAMT" type="Real" array="False"/>
+            <parameter name="payment" type="Real" array="False"/>
+            <parameter name="origLoanAmt" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="balance" type="Real" array="False" size=""/>
+            <declare name="counter" type="Integer" array="False" size=""/>
+            <assign variable="counter" expression="0"/>
+            <for variable="counter" start="1" end="11" direction="inc" step="1">
+                <if expression="loanAMT &gt; payment">
+                    <then>
+                        <assign variable="loanAMT" expression="loanAMT - payment"/>
+                    </then>
+                    <else>
+                        <assign variable="loanAMT" expression="0"/>
+                    </else>
+                </if>
+                <output expression="&quot;Month: &quot;&amp;counter&amp;&quot;         Balance:&quot;&amp;loanAMT&amp;&quot;&quot;" newline="True"/>
+            </for>
+            <output expression="&quot;Your original loan amount was:&quot; &amp;origLoanAMT" newline="True"/>
+        </body>
+    </function>
+    <function name="welcome" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Welcome to Know Your Loan Company&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

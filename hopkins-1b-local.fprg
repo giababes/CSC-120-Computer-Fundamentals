@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value="lab1A - creating your first program using flowgorithm"/>
+        <attribute name="authors" value="georgie"/>
+        <attribute name="about" value="semester: sp22&#13;&#10;section: 0006&#13;&#10;bb username: gmhopkins@my.waketech.edu"/>
+        <attribute name="saved" value="2022-02-16 09:56:26 PM"/>
+        <attribute name="created" value="Q2hhcmw7REVTS1RPUC1KNVBPUElGOzIwMjItMDItMDc7MTA6MTQ6MjEgQU07MjgzNQ=="/>
+        <attribute name="edited" value="Q2hhcmw7REVTS1RPUC1KNVBPUElGOzIwMjItMDItMTY7MDk6NTY6MjYgUE07OTsyOTg1"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="All variables should have meaning and be lower camel casing."/>
+            <comment text="T1: Birth Year 2000 Current Year 2021 age = 21&#13;&#10;T2: Birth Year 1920 Current Year 2021 age = 101"/>
+            <comment text="You can combine declatations as LONG as same datatype."/>
+            <call expression="greeting()"/>
+            <call expression="calculateAge()"/>
+            <call expression="endOfProgram()"/>
+        </body>
+    </function>
+    <function name="calculateAge" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="currYear, birthYear" type="Integer" array="False" size=""/>
+            <declare name="age" type="Integer" array="False" size=""/>
+            <assign variable="age" expression="0"/>
+            <output expression="&quot;Please enter your birth year&quot;" newline="True"/>
+            <input variable="birthYear"/>
+            <output expression="&quot;What is the current year?&quot;" newline="True"/>
+            <input variable="currYear"/>
+            <assign variable="age" expression="currYear - birthYear"/>
+            <output expression="&quot;Your age is &quot;&amp;age&amp;&quot;Georgie thanks you for using this Program.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="endOfProgram" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;End of Program&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="greeting" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="greeting" type="String" array="False" size=""/>
+            <assign variable="greeting" expression="&quot;Welcome to My Program&quot;"/>
+            <output expression="greeting" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

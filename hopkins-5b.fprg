@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value="hopkins-l5b"/>
+        <attribute name="authors" value="georgie hopkins"/>
+        <attribute name="about" value="current semester: sp22&#13;&#10;section: 0006&#13;&#10;bb username: gmhopkins"/>
+        <attribute name="saved" value="2022-02-28 09:23:38 PM"/>
+        <attribute name="created" value="Q2hhcmw7REVTS1RPUC1KNVBPUElGOzIwMjItMDItMjg7MDg6NDI6MzcgUE07Mjg2OA=="/>
+        <attribute name="edited" value="Q2hhcmw7REVTS1RPUC1KNVBPUElGOzIwMjItMDItMjg7MDk6MjM6MzggUE07MzsyOTc5"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="T1: 3 entries 25500, 30000.50, 5000 accumprice= 60000.5, average = 20000.166&#13;&#10;T2: Test Quit&#13;&#10;"/>
+            <declare name="address" type="String" array="False" size=""/>
+            <call expression="userInfo()"/>
+            <call expression="reportHeading()"/>
+            <output expression="&quot;What is your address?&quot;" newline="True"/>
+            <input variable="address"/>
+            <call expression="createReport(address)"/>
+            <call expression="finish()"/>
+        </body>
+    </function>
+    <function name="createReport" type="None" variable="">
+        <parameters>
+            <parameter name="address" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="price, accumPrice, avgPrice" type="Real" array="False" size=""/>
+            <declare name="QUIT" type="String" array="False" size=""/>
+            <assign variable="QUIT" expression="&quot;ZZZ&quot;"/>
+            <assign variable="QUIT" expression="&quot;zzz&quot;"/>
+            <declare name="counter" type="Integer" array="False" size=""/>
+            <assign variable="counter" expression="0"/>
+            <assign variable="accumPrice" expression="0"/>
+            <while expression="address &lt;&gt; QUIT">
+                <output expression="&quot;Enter price of property&quot;" newline="True"/>
+                <input variable="price"/>
+                <output expression="address&amp;&quot;       &quot;&amp;price" newline="True"/>
+                <assign variable="accumPrice" expression="accumPrice + price"/>
+                <assign variable="counter" expression="counter + 1"/>
+                <output expression="&quot;Enter address of next property OR ZZZ to quit application&quot;" newline="True"/>
+                <input variable="address"/>
+            </while>
+            <assign variable="avgPrice" expression="accumPrice/counter"/>
+            <output expression="&quot;The total accumulated price of real estate is: &quot;&amp;accumPrice&amp;&quot;. The average real estate price for &quot;&amp;counter&amp;&quot; properties this month is: $&quot;&amp;avgPrice" newline="True"/>
+        </body>
+    </function>
+    <function name="finish" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Thank you for using this program. This program was created by Hopkins.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="reportHeading" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="HEAD1, HEAD2" type="String" array="False" size=""/>
+            <assign variable="HEAD1" expression="&quot;MONTH-END SALES REPORT&quot;"/>
+            <assign variable="HEAD2" expression="&quot;Address              Price&quot;"/>
+            <output expression="HEAD1" newline="True"/>
+            <output expression="HEAD2" newline="True"/>
+            <output expression="&quot;Enter address of the property&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="userInfo" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="name, reportMonth, reportYear" type="String" array="False" size=""/>
+            <output expression="&quot;Welcome to our Real Estate Sales Application&quot;" newline="True"/>
+            <output expression="&quot;Who is this report for?&quot;" newline="True"/>
+            <input variable="name"/>
+            <output expression="&quot;What month is this report for?&quot;" newline="True"/>
+            <input variable="reportMonth"/>
+            <output expression="&quot;What year is this report for?&quot;" newline="True"/>
+            <input variable="reportYear"/>
+            <output expression="&quot;Requester: &quot;&amp;name" newline="True"/>
+            <output expression="&quot;Report date is &quot;&amp;reportMonth&amp;&quot; &quot;&amp;reportYear" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

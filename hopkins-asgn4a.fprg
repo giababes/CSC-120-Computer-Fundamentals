@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value="hopkins-l4a"/>
+        <attribute name="authors" value="georgiehopkins"/>
+        <attribute name="about" value="curr semester: sp22&#13;&#10;section: 0006&#13;&#10;bbusername: gmhopkins"/>
+        <attribute name="saved" value="2022-02-21 01:27:46 PM"/>
+        <attribute name="created" value="Q2hhcmw7REVTS1RPUC1KNVBPUElGOzIwMjItMDItMjA7MTE6NTI6NTQgUE07Mjg1NA=="/>
+        <attribute name="edited" value="Q2hhcmw7REVTS1RPUC1KNVBPUElGOzIwMjItMDItMjE7MDE6Mjc6NDYgUE07MTA7MzAxMw=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="T1: W= 2 rate = 1 total = 2&#13;&#10;T2: w= 5 rate = 2.25 total = 11.25&#13;&#10;T3: W= 6 rate = 2.25 total = 13.50&#13;&#10;T4: W= 7 rate = 3.50 total = 24.5&#13;&#10;T4: W= 10 rate = 3.50 total = 35.00&#13;&#10;T5: W= 12.3 rate = 4.10 total = 49.2&#13;&#10;"/>
+            <call expression="welcome()"/>
+            <call expression="shippingCost()"/>
+            <call expression="endOfProgram()"/>
+        </body>
+    </function>
+    <function name="endOfProgram" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Thank you for using our shipping estimator!&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="shippingCost" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="inputWeight" type="Integer" array="False" size=""/>
+            <output expression="&quot;Enter package weight: &quot;" newline="True"/>
+            <input variable="inputWeight"/>
+            <declare name="Mten, MSixLTen, MTwoLSix, EorL2, shippingTotal, rate, weight" type="Real" array="False" size=""/>
+            <assign variable="Mten" expression="4.10"/>
+            <assign variable="MSixLTen" expression="3.50"/>
+            <assign variable="MTwoLSix" expression="2.25"/>
+            <assign variable="EorL2" expression="1.00"/>
+            <if expression="inputWeight &gt;10">
+                <then>
+                    <assign variable="rate" expression="(Mten)"/>
+                    <output expression="(&quot;Your shipping rate is: &quot; &amp;Mten)" newline="True"/>
+                </then>
+                <else>
+                    <if expression="inputWeight &gt;6 AND inputWeight &lt;=10">
+                        <then>
+                            <assign variable="rate" expression="MSixLTen"/>
+                            <output expression="(&quot;Your shipping rate is: &quot; &amp;MSixLTen)" newline="True"/>
+                        </then>
+                        <else>
+                            <if expression="inputWeight &gt;2 AND inputWeight &lt;=6">
+                                <then>
+                                    <assign variable="rate" expression="MTwoLSix"/>
+                                    <output expression="(&quot;Your shipping rate is: &quot; &amp;MTwoLSix)" newline="True"/>
+                                </then>
+                                <else>
+                                    <if expression="inputWeight &lt;= 2">
+                                        <then>
+                                            <assign variable="rate" expression="EorL2"/>
+                                            <output expression="(&quot;Your shipping rate is: &quot; &amp;EorL2)" newline="True"/>
+                                        </then>
+                                        <else/>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+            <assign variable="shippingTotal" expression="rate * inputWeight"/>
+            <output expression="(&quot;Your shipping cost is:&quot; &amp;shippingTotal)" newline="True"/>
+        </body>
+    </function>
+    <function name="welcome" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Welcome to Georgie's Express Shipping!&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

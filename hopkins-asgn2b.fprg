@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value="hopkins-2b"/>
+        <attribute name="authors" value="georgie hopkins"/>
+        <attribute name="about" value="current semester: sp22&#13;&#10;section: 0006&#13;&#10;bb username: gmhopkins"/>
+        <attribute name="saved" value="2022-02-11 10:35:21 PM"/>
+        <attribute name="created" value="Q2hhcmw7REVTS1RPUC1KNVBPUElGOzIwMjItMDItMTE7MTA6MDg6NDkgUE07Mjg1OA=="/>
+        <attribute name="edited" value="Q2hhcmw7REVTS1RPUC1KNVBPUElGOzIwMjItMDItMTE7MTA6MzU6MjEgUE07NDsyOTU5"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Welcome&quot;" newline="True"/>
+            <declare name="balance, overDraft" type="Real" array="False" size=""/>
+            <output expression="&quot;Current balance: &quot;" newline="True"/>
+            <input variable="balance"/>
+            <output expression="&quot;Overdraft occurances: &quot;" newline="True"/>
+            <input variable="overDraft"/>
+            <declare name="minFee, draftFEE, totalMinFEE, totalOverdraftFEE, totalFEE" type="Real" array="False" size=""/>
+            <assign variable="minFee" expression="0.01"/>
+            <assign variable="draftFEE" expression="2.0"/>
+            <assign variable="totalMinFEE" expression="balance * 0.01"/>
+            <assign variable="totalOverdraftFEE" expression="overDraft * 2"/>
+            <assign variable="totalFEE" expression="totalMinFEE + totalOverdraftFEE"/>
+            <output expression="&quot;Total fee: $&quot; &amp;totalFEE&amp; &quot; charged by Wake Tech Financial: &quot;" newline="True"/>
+            <output expression="&quot;Thank you for using program by Hopkins&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
